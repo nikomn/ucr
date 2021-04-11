@@ -32,19 +32,22 @@ def get_lenght(audio_file):
         audio_length = audio.info.length
     return int(round(audio_length))
 
-def get_artist_title(audio_file):
+def get_artist_title_album(audio_file):
     # Can have different form...
     # 1:
     # ARTIST=...
     # TITLE=...
+    # ALBUM=...
     # 2:
     # TIT2=...
     # TPE1=...
+    # TALB=...
     # ...
 
 
-    artist = ""
-    title = ""
+    artist = "unknown artist"
+    title = "unknown song"
+    album = "unknown album"
     
     # If filepath has spaces it must be enclosed in quotes to play in vlc
     # ...but with mutagen it should not be in quotes, so lets remove quotes...
@@ -61,6 +64,10 @@ def get_artist_title(audio_file):
                 artist = audio["TPE1"]
             except:
                 artist = audio["ARTIST"]
+            try:
+                album = audio["TALB"]
+            except:
+                album = audio["ALBUM"]
         if audio_file.lower().endswith("flac"):
             audio = FLAC(audio_file)
             try:
@@ -71,6 +78,10 @@ def get_artist_title(audio_file):
                 artist = audio["TPE1"]
             except:
                 artist = audio["ARTIST"]
+            try:
+                album = audio["TALB"]
+            except:
+                album = audio["ALBUM"]
         if audio_file.lower().endswith("wav"):
             audio = WAVE(audio_file)
             try:
@@ -81,10 +92,14 @@ def get_artist_title(audio_file):
                 artist = audio["TPE1"]
             except:
                 artist = audio["ARTIST"]
+            try:
+                album = audio["TALB"]
+            except:
+                album = audio["ALBUM"]
     except:
-        return ["unknown", "unknown"]
+        print("Error while reading file metadata!")
     
-    return [artist, title]
+    return [artist, title, album]
 
 
 
@@ -115,8 +130,8 @@ while radio_on:
     # find ~/Music -type f > example.playlist + some editing...
 
     song = '"/home/' + os.getlogin() + read_playlist(playlist) + '"'
-    artist_title = get_artist_title(song)
-    print("Now playing:", artist_title[0], "-", artist_title[1])
+    artist_title = get_artist_title_album(song)
+    print("Now playing:", artist_title[0], "-", artist_title[1], "- from the album", artist_title[2])
     play_with_vlc(song)
     print("To stop playing press any key")
     inputs, outputs, errors = select.select( [sys.stdin], [], [], 2 )
@@ -126,12 +141,6 @@ while radio_on:
             # print("enteri found!")
             radio_on = False
     print()
-    
-    #if inputs:
-    #    print("You said", sys.stdin.readline().strip())
-    #    print("toimii")
-    #x = False
-    
 
 
 # print(read_playlist("example.playlist"))
