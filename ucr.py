@@ -26,14 +26,14 @@ def get_lenght(audio_file):
 
 print("This is Underground Campus Radio!")
 
-print("Next program staring soon...")
+print("Next program starting soon...")
 create_filler("filler.wav", "25")
 play_with_vlc("filler-trimmed.wav")
 
 print("Now playing: Dead Kennedys - Hyperactive Child... (" + str(get_lenght("song1.mp3")) + " seconds)")
 play_with_vlc("song1.mp3")
 
-print("Next program staring soon...")
+print("Next program starting soon...")
 create_filler("filler.wav", "15")
 play_with_vlc("filler-trimmed.wav")
 
@@ -43,7 +43,7 @@ play_with_vlc("song2.mp3")
 print("Now playing: The Yardbirds - Train Kept Rollin' (live)... (" + str(get_lenght("song3.flac")) + " seconds)")
 play_with_vlc("song3.flac")
 
-print("Next program staring soon...")
+print("Next program starting soon...")
 create_filler("filler.wav", "40")
 play_with_vlc("filler-trimmed.wav")
 

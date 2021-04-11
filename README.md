@@ -44,3 +44,8 @@ unplayed episode is chosen or completely random episodes.
 podcast should or should not be played during some period of time.
 - The audio stream can also be played over lan, so that it can be opened from any
 computer on the network and listened with vlc.
+- Maybe in the future it could be interesting if it would be possible to play the
+music tracks from spotify etc. rather than local files? As I understand it vlc can
+somehow play spotify music, but would have to read more on this. (This will be
+very low on my priority list, as the whole point of this program is to get more
+use out of the thousands of mp3 songs that I have gathered over many years.)
