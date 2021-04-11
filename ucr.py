@@ -104,7 +104,8 @@ def get_artist_title_album(audio_file):
 
 
 
-print("This is Underground Campus Radio!")
+# print("This is Underground Campus Radio!")
+os.system("cat logo.txt")
 
 # Custom playlist for testing...
 playlist = "example.playlist"
